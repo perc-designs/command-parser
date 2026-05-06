@@ -14,13 +14,23 @@
       "name": "arm_gnu_toolchain",
       "inherits": ["NinjaBuild"],
       "hidden": true,
-      "toolchainFile": "${sourceDir}/config/toolchains/arm_gnu_toolchain.cmake"
+      "toolchainFile": "${sourceDir}/config/toolchains/arm_gnu_toolchain.cmake",
+      "cacheVariables": {
+        "CMAKE_TRY_COMPILE_TARGET_TYPE": "STATIC_LIBRARY",
+        "CMAKE_C_FLAGS": "-mcpu=cortex-m33 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=soft",
+        "CMAKE_CXX_FLAGS": "-mcpu=cortex-m33 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=soft -fno-rtti -fno-exceptions -ffunction-sections -fdata-sections"
+      }
     },
     {
       "name": "riscv_gnu_toolchain",
       "inherits": ["NinjaBuild"],
       "hidden": true,
-      "toolchainFile": "${sourceDir}/config/toolchains/riscv_gnu_toolchain.cmake"
+      "toolchainFile": "${sourceDir}/config/toolchains/riscv_gnu_toolchain.cmake",
+      "cacheVariables": {
+        "CMAKE_TRY_COMPILE_TARGET_TYPE": "STATIC_LIBRARY",
+        "CMAKE_C_FLAGS": "-march=rv32imac_zicsr_zifencei -mabi=ilp32",
+        "CMAKE_CXX_FLAGS": "-march=rv32imac_zicsr_zifencei -mabi=ilp32"
+      }
     },
     {
       "name": "gnu_toolchain",
