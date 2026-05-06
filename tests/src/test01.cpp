@@ -32,10 +32,9 @@ constexpr auto my_registry = cli::registry()
 
 // Parse and execute
 int main() {
-  const char* input = "echo hello world";
-  auto result = cli::parse_and_execute<32, 16, 8, 32>(input, my_registry);
+  const auto input = "echo hello world";
 
-  if (!result.is_valid()) {
+  if (const auto result = cli::parse_and_execute<32, 16, 8, 32>(input, my_registry); !result.is_valid()) {
     printf("Error: %s\n", cli::error_string(result.error).data());
   }
 
