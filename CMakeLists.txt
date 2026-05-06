@@ -9,8 +9,8 @@ project("Command Processor"
 add_library("cli_parser" INTERFACE)
 target_sources("cli_parser" INTERFACE
         FILE_SET cli_header TYPE HEADERS
-        BASE_DIRS inc
-        FILES inc/cli_parser.hpp
+        BASE_DIRS src
+        FILES src/cli_parser.hpp
 )
 add_library(CLI::PARSER ALIAS "cli_parser")
 add_subdirectory(tests)
