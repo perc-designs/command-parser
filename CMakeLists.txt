@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 4.0.0)
 
 project("Command Processor"
         LANGUAGES CXX C ASM
+        VERSION "0.1.0"
         DESCRIPTION "Simple command parser for microcontrollers."
 )
 
