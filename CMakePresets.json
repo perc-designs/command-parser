@@ -1,0 +1,26 @@
+{
+  "version": 10,
+  "include": ["config/presets/cxx_standards.json","config/presets/toolchains.json"],
+  "configurePresets": [
+    {
+      "name": "command-parser-arm-cxx17",
+      "inherits": ["cpp17", "arm_gnu_toolchain"],
+      "binaryDir": "${sourceDir}/build/cmd-parser-arm-17"
+    },
+    {
+      "name": "command-parser-arm-cxx20",
+      "inherits": ["cpp20", "arm_gnu_toolchain"],
+      "binaryDir": "${sourceDir}/build/cmd-parser-arm-20"
+    },
+    {
+      "name": "command-parser-arm-cxx23",
+      "inherits": ["cpp23", "arm_gnu_toolchain"],
+      "binaryDir": "${sourceDir}/build/cmd-parser-arm-23"
+    },
+    {
+      "name": "command-parser-arm-cxx26",
+      "inherits": ["cpp26", "arm_gnu_toolchain"],
+      "binaryDir": "${sourceDir}/build/cmd-parser-arm-26"
+    }
+  ]
+}
