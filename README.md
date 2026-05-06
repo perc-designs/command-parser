@@ -529,4 +529,4 @@ int main() {
 
 ## License
 
-MIT License - Copyright (c) 2026 Rob Morley
+GNU General Public License v3.0 - Copyright (c) 2026 Rob Morley
