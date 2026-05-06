@@ -1,0 +1,32 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 4,
+    "minor": 0
+  },
+  "configurePresets": [
+    {
+      "name": "NinjaBuild",
+      "hidden": true,
+      "generator": "Ninja"
+    },
+    {
+      "name": "arm_gnu_toolchain",
+      "inherits": ["NinjaBuild"],
+      "hidden": true,
+      "toolchainFile": "${sourceDir}/config/toolchains/arm_gnu_toolchain.cmake"
+    },
+    {
+      "name": "riscv_gnu_toolchain",
+      "inherits": ["NinjaBuild"],
+      "hidden": true,
+      "toolchainFile": "${sourceDir}/config/toolchains/riscv_gnu_toolchain.cmake"
+    },
+    {
+      "name": "gnu_toolchain",
+      "inherits": ["NinjaBuild"],
+      "hidden": true,
+      "toolchainFile": "${sourceDir}/config/toolchain/gnu_toolchain.cmake"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "version": 10,
+  "configurePresets": [
+    {
+      "name": "c_standard",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_STANDARD" : "11",
+        "CMAKE_C_STANDARD_REQUIRED" : "ON"
+      }
+    },
+    {
+      "name": "cpp17",
+      "hidden": true,
+      "inherits": ["c_standard"],
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD" : "17",
+        "CMAKE_CXX_STANDARD_REQUIRED" : "ON"
+      }
+    },
+    {
+      "name": "cpp20",
+      "hidden": true,
+      "inherits": ["c_standard"],
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD" : "20",
+        "CMAKE_CXX_STANDARD_REQUIRED" : "ON"
+      }
+    },
+    {
+      "name": "cpp23",
+      "hidden": true,
+      "inherits": ["c_standard"],
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD" : "23",
+        "CMAKE_CXX_STANDARD_REQUIRED" : "ON"
+      }
+    },
+    {
+      "name": "cpp26",
+      "hidden": true,
+      "inherits": ["c_standard"],
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD" : "26",
+        "CMAKE_CXX_STANDARD_REQUIRED" : "ON"
+      }
+    }
+  ]
+}
