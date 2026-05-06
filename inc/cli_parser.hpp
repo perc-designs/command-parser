@@ -34,6 +34,10 @@
 #include <cstdint>
 #include <cctype>
 
+#if __cplusplus >= 202002L
+#include <span>
+#endif
+
 namespace cli {
 
 // ============================================================================
@@ -42,19 +46,18 @@ namespace cli {
 
 namespace detail {
 
-/**
- * @brief Check if string_view starts with prefix (C++17 compatible)
- */
 constexpr bool starts_with(const std::string_view str, std::string_view prefix) noexcept {
     return str.size() >= prefix.size() && str.substr(0, prefix.size()) == prefix;
 }
 
-/**
- * @brief Check if string_view starts with character (C++17 compatible)
- */
 constexpr bool starts_with(const std::string_view str, const char c) noexcept {
     return !str.empty() && str[0] == c;
 }
+
+} // namespace detail
+
+#if __cplusplus < 202002L
+namespace detail {
 
 /**
  * @brief Minimal span-like view for C++17 compatibility
@@ -128,6 +131,12 @@ private:
 // Export span to cli namespace for convenience
 template<typename T>
 using span = detail::span<T>;
+#else
+
+template<typename T>
+using span = std::span<T>;
+
+#endif
 
 // ============================================================================
 // Default Configuration (can be overridden via template parameters)
