@@ -31,7 +31,7 @@
 #include <array>
 #include <optional>
 #include <cstddef>
-// #include <cstdint>
+#include <cstdint>
 #include <cctype>
 
 namespace cli {
