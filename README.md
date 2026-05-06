@@ -6,13 +6,21 @@ A zero-overhead, compile-time configured command line parser for embedded system
 
 - **Zero Dynamic Allocation**: All memory is statically allocated using fixed-size arrays
 - **Compile-Time Configuration**: Commands and options are registered at compile time
-- **Type Safety**: Leverages C++23 concepts for type-safe interfaces
+- **Type Safety**: Type-safe interfaces compatible with C++17 and later
 - **Flexible Options**: Support for both long (`--option`) and short (`-o`) flags
 - **Boolean Flags**: Options can be boolean (no value) or value-based
 - **Argument Validation**: Specify minimum and maximum argument counts
 - **Integrated Handlers**: Each command can have an associated handler function
 - **Zero-Copy**: Uses `std::string_view` for efficient string handling
 - **Small Footprint**: ~2-5 KB flash, ~512 bytes RAM during parsing
+
+## Requirements
+
+| Standard | Support |
+|----------|---------|
+| C++17    | Full support (uses built-in `span` backport) |
+| C++20    | Full support (uses `std::span`) |
+| C++23    | Full support |
 
 ## Memory Usage
 
