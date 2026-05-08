@@ -636,6 +636,7 @@ struct ParserState {
     ParseState state{ParseState::ExpectCommand};
     std::optional<OptionDef> pending_option;
     std::size_t pending_option_position{0};
+    bool saw_option{false};
 };
 
 /**
@@ -706,6 +707,8 @@ constexpr ParseResult<MaxOptions, MaxArgs> parse(
                         return result;
                     }
 
+                    state.saw_option = true;
+
                     if (opt_def->is_boolean()) {
                         if (result.option_count >= MaxOptions) {
                             result.error = ParseError::TooManyArguments;
@@ -720,7 +723,12 @@ constexpr ParseResult<MaxOptions, MaxArgs> parse(
                         state.state = ParseState::ExpectOptionValue;
                     }
                 } else {
-                    // Positional argument
+                    if (state.saw_option) {
+                        result.error = ParseError::InvalidFormat;
+                        result.error_position = token.position;
+                        return result;
+                    }
+
                     if (result.arg_count >= MaxArgs) {
                         result.error = ParseError::TooManyArguments;
                         result.error_position = token.position;
@@ -728,28 +736,6 @@ constexpr ParseResult<MaxOptions, MaxArgs> parse(
                     }
 
                     result.args[result.arg_count++] = token.text;
-
-                    // Consume remaining as arguments (strict ordering)
-                    for (std::size_t j = i + 1; j < tokens.count; ++j) {
-                        const auto& arg_token = tokens.tokens[j];
-
-                        if (arg_token.is_flag()) {
-                            result.error = ParseError::InvalidFormat;
-                            result.error_position = arg_token.position;
-                            return result;
-                        }
-
-                        if (result.arg_count >= MaxArgs) {
-                            result.error = ParseError::TooManyArguments;
-                            result.error_position = arg_token.position;
-                            return result;
-                        }
-
-                        result.args[result.arg_count++] = arg_token.text;
-                    }
-
-                    i = tokens.count;
-                    break;
                 }
                 break;
             }
