@@ -728,28 +728,6 @@ constexpr ParseResult<MaxOptions, MaxArgs> parse(
                     }
 
                     result.args[result.arg_count++] = token.text;
-
-                    // Consume remaining as arguments (strict ordering)
-                    for (std::size_t j = i + 1; j < tokens.count; ++j) {
-                        const auto& arg_token = tokens.tokens[j];
-
-                        if (arg_token.is_flag()) {
-                            result.error = ParseError::InvalidFormat;
-                            result.error_position = arg_token.position;
-                            return result;
-                        }
-
-                        if (result.arg_count >= MaxArgs) {
-                            result.error = ParseError::TooManyArguments;
-                            result.error_position = arg_token.position;
-                            return result;
-                        }
-
-                        result.args[result.arg_count++] = arg_token.text;
-                    }
-
-                    i = tokens.count;
-                    break;
                 }
                 break;
             }
